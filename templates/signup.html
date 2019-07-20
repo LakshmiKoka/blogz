@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align:center">Signup</h1>
+<form action="/signup" method="POST">
+    <table>
+        <tr>
+            <td>
+                <label for="username"> Username </label>
+            </td>    
+            <td>    
+                <input type="text" name="username" id="username"
+                {% if username %} value="{{ username }}" {% endif%}>
+            </td>
+            <td>
+                    {% if username_error %}
+                    <p class='error'>{{ username_error }}</p>
+                    {% endif %} 
+
+                    {% if duplicate_error %}
+                    <p class='error'>A user with that username already exists.</p>
+                    {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                <label for="password"> Password </label>
+            </td>  
+            <td>
+                <input type="password" name="password" id="password"/>
+            </td>  
+            <td>
+                    {% if password_error %}
+                    <p class='error'>{{ password_error }}</p>
+                    {% endif %} 
+            </td>   
+        </tr>
+        <tr>
+                <td> 
+                    <label for="vpassword"> Verify Password </label>
+                </td>  
+                <td>
+                    <input type="password" name="vpassword" id="vpassword"/>
+                </td> 
+                <td>
+                        {% if vpassword_error %}
+                        <p class='error'>{{ vpassword_error }}</p>
+                        {% endif %} 
+                </td>    
+        </tr>
+    </table>
+    <input type="submit" value="Submit"/>
+</form>
+
+{% endblock %} 

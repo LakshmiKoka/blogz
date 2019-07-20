@@ -1,18 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Build-a-blog</title>
-    <style>.error { color: red; margin :0px} </style>
+    <title>Blogz</title>
+    <style>
+        body {
+            margin: auto;
+            max-width: 800px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        nav #user-account {
+            float: right;
+        }
+
+        nav ul {
+            padding: 0;
+            display: inline-block;
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+
+        nav ul li {
+            list-style: none;
+            display: inline-block;
+            margin-right: 15px;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <nav>
-        <a href="/">Main Blog Page</a>      
-        <a href="/new_blog">Add a Blog Entry</a>
-    </nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blogs">All posts</a> </li>
+                <li><a href="/new_blog">New post</a></li>
+            </ul>
+            <ul id="user-account">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/logout">Logout</a> </li>
+            </ul>
+        </nav>
+        <nav>
+
+        </nav>
+        </div>
     </header>
     {% block content %}
 
     {% endblock %}
 </body>
+
 </html>
