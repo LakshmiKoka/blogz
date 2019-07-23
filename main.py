@@ -37,7 +37,7 @@ class User(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'blogs', 'index', 'signup']
+    allowed_routes = ['login', 'blog_list', 'index', 'signup']
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect('/login')           
 
@@ -45,9 +45,10 @@ def require_login():
 def index():
     users = User.query.all() 
     return render_template('index.html', users=users)
-
+    
 @app.route('/blogs')
 def blog_list():
+
     user_id = request.args.get('user')
     if user_id == None:
        blogs = Blog.query.order_by(Blog.id.desc()).all() 
@@ -86,9 +87,9 @@ def new_blog():
         return render_template('new_blog.html')
 
 @app.route('/login', methods=['POST', 'GET'])
-def login():
+def login(): 
     if 'username' in session:
-        return redirect('/') 
+        return redirect('/')  
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -100,8 +101,8 @@ def login():
         else:
             error = "Username doesn't exist or password is incorrect."
             return render_template('login.html', error=error)    
-    else:
-        return render_template('/login.html')
+    else: 
+        return render_template('login.html')  
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
